@@ -1,0 +1,64 @@
+
+----------
+Welcome
+----------
+
+This repo is to help with the setup of an amenable emacs environment.
+This effort was borne from the fact that I often find that I am on a
+foriegn or new machine that I have to quickly setup and do work on.
+Having a cogent and customized environment is key to working
+effectively. So, this is an effort to create such an environment in a
+way that is flexible for others to perhaps get use from.  Leveraging
+GIT seemed like the right thing to do.
+
+In this repo you will find the scripts, configuration and packages
+necessary to set up your emacs environment.  I code for a living,
+which I assume is the same for you, so the environment is of a
+distinctly developer ilk. I have included an install "setup" script to
+do the installation and have functions to help keep things up-to-date.
+My friends thus far enjoy it and I hope you will too.
+
+Some goodies: In the "custom" directory there are a couple of elisp
+programs I wrote to do tiny things like cursor-in-place scrolling and
+such.
+
+----------
+INSTALLATION:
+----------
+
+%> bash <(curl -s http://moya.6thcolumn.org/emacs_resources/ezsetup)
+
+OR
+
+%> cd ~/
+%> git clone git://github.com/gavinmbell/emacs_resources.git ~/.emacs_resources
+%> cd .emacs_resources
+%> ./setup
+%> (re)start emacs
+
+Then...
+
+(smile)
+
+Both ezsetup and setup have options that are described via --help | -h
+
+Once you have this installed, you may put an additional customizations in file:
+
+ ~/.emacs.d/.emacs_local
+
+This file, if exists, is loaded at the end of the load sequence.
+
+----------
+UPDATING:
+----------
+
+To make it easy to stay updated with the latest changes, there is a function to call.
+Regardless of where you are located in the file system you can always call:
+
+%> check_for_emacs_resources_update
+
+This will update this project from the git repository and branch that the project is locally at.
+
+I should have done this a long time ago... enjoy! :-)
+-gavin
+

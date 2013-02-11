@@ -1,0 +1,25 @@
+#**************************************************************************
+#  Description:
+#
+#     Files that git should ignore...
+#
+#***************************************************************************
+
+.emacs*
+*.elc
+/url
+auto-save-list*
+TAGS
+*~
+*.cache
+*.DS_Store
+*.a
+*.o
+*.pyc
+*.egg
+*#*
+*.md5
+semantic.cache*
+generated/
+/build
+/backup
