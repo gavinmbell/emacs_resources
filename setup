@@ -34,12 +34,12 @@ FORCE=0
 
 homedir=${homedir:-${HOME:?"HOME environment var must be set!!!!"}}
 
-programs_to_check_for=(emacs)
+programs_to_check_for=("emacs")
 
 quick_checks() {
     local oops_count=0
     for program in ${programs_to_check_for[@]}; do
-        ${program} >& /dev/null
+        ${program} --version >& /dev/null
         if [ $? != 0 ]; then
             ((oops_count++))
             echo "Couldn't find [${program}]"
@@ -89,43 +89,50 @@ _readlinkf() {
 }
 
 setup_top_level_dir() {
+    ((DEBUG)) && echo "setup_top_level_dir"
     local tld=".emacs.d"
-    local proj_dir=${0%/*}
+    local _pd_=$(_readlinkf ${0%/*})
+    local proj_dir=${_pd_%/*}
+    local _dd_=$(_readlinkf ${homedir}/${tld}) 
+    local dest_dir=${_dd_%/*}
     echo -n "setting up top level ${tld} dir... "
-    if [ "$(_readlinkf ${proj_dir})" = "$(_readlinkf ${homedir}/${tld} | tail -n 1)" ]; then
+    ((DEBUG)) && echo "proj_dir = ${proj_dir}"
+    if [ "${proj_dir}" = "${dest_dir}" ]; then
         echo "[OK] (nothing to do already linked)"
     else
-        ((DEBUG|DRY_RUN)) && echo "[ -e ${homedir}/${tld} ]  && mv -v ${homedir}/${tld}{,.bak}"
-        ((! DRY_RUN)) && [ -e ${homedir}/${tld} ] && mv -v ${homedir}/${tld}{,.bak}
-        ((DEBUG||DRY_RUN)) && echo "ln -s $(_readlinkf ${proj_dir}) ${homedir}/${tld}"
+        ((DEBUG|DRY_RUN)) && echo "[ -e ${homedir}/${tld} ] && mv ${homedir}/${tld}{,_bak}"
+        ((! DRY_RUN)) && [ -e "${homedir}/${tld}" ] && mv -v ${homedir}/${tld}{,_bak}
+        ((DEBUG||DRY_RUN)) && echo "ln -s ${proj_dir} ${homedir}/${tld}"
         if ((! DRY_RUN)); then
-            ((FORCE & DEBUG)) && echo "[ -L "${homedir}/${tld}" ] && [ "$(_readlinkf ${homedir}/${tld})" != "$(_readlinkf ${proj_dir})" ] && unlink ${homedir}/${tld}"
-            ((FORCE)) && [ -L "${homedir}/${tld}" ] && [ "$(_readlinkf ${homedir}/${tld})" != "$(_readlinkf ${proj_dir})" ] && unlink ${homedir}/${tld}
-            ln -s $(_readlinkf ${proj_dir}) ${homedir}/${tld}
-            if [ $? != 0 ]; then echo "ERROR: problem linking top level dir ${proj_dir}"; else echo " linked dir... [OK] "; return 1; fi
+            ((FORCE & DEBUG)) && echo "[ -L "${homedir}/${tld}" ] && [ "${dest_dir}" != "${proj_dir}" ] && unlink ${homedir}/${tld}"
+            ((FORCE)) && [ -L "${homedir}/${tld}" ] && [ "${dest_dir}" != "${proj_dir}" ] && unlink ${homedir}/${tld}
+            ln -s ${proj_dir} ${homedir}/${tld}
+            if [ $? != 0 ]; then echo "ERROR: problem linking top level dir ${proj_dir}"; return 1; else echo " linked dir... [OK] "; return 0; fi
         fi
     fi
     return 0
 }
 
 setup_config_files() {
+    ((DEBUG)) &&echo "setup_config_files"
     [ ! -e .git ] && echo "Sorry this is not a git repo" && exit 1
     local mod_count=0
     for dot_file in $(ls -a | egrep '^dot_*'); do
-        echo -n "setting up $dot_file... "
+        echo -n "setting up \"${dot_file/dot_/.}\" ... "
 
         #check if the file exists already
-        if [ "$(_readlinkf ${dot_file})" = "$(_readlinkf ${homedir}/.${dot_file} | tail -n 1)" ]; then
+        ((DEBUG)) && echo "[ "$(_readlinkf ${dot_file})" = "$(_readlinkf ${homedir}/${dot_file/dot_/.})" ]"
+        if [ "$(_readlinkf ${dot_file})" = "$(_readlinkf ${homedir}/${dot_file/dot_/.})" ]; then
             echo "[OK] (nothing to do already linked)"
         else
-            ((DEBUG|DRY_RUN)) && echo "[ -e ${homedir}/.${dot_file} ]  && mv -v ${homedir}/.${dot_file}{,.bak}"
-            ((! DRY_RUN)) && [ -e ${homedir}/${dot_file/dot_/.} ] && mv -v ${homedir}/.${dot_file/dot_/.}{,.bak}
+            ((DEBUG|DRY_RUN)) && echo "[ -e ${homedir}/${dot_file/dot_/.} ]  && mv -v ${homedir}/${dot_file/dot_/.}{,.bak}"
+            ((! DRY_RUN)) && echo "here" && [ -e ${homedir}/${dot_file/dot_/.} ] && mv -v ${homedir}/${dot_file/dot_/.}{,.bak}
             ((DEBUG||DRY_RUN)) && echo "ln -s $(_readlinkf ${dot_file}) ${homedir}/${dot_file/dot_/.}"
             if ((! DRY_RUN)); then
                 ((FORCE & DEBUG)) && echo "[ -L "${homedir}/${dot_file/dot_/.}" ] && [ "$(_readlinkf ${homedir}/${dot_file/dot_/.})" != "$(_readlinkf ${dot_file})" ] && unlink ${homedir}/${dot_file/dot_/.}"
                 ((FORCE)) && [ -L "${homedir}/${dot_file/dot_/.}" ] && [ "$(_readlinkf ${homedir}/${dot_file/dot_/.})" != "$(_readlinkf ${dot_file})" ] && unlink ${homedir}/${dot_file/dot_/.}
                 ln -s $(_readlinkf ${dot_file}) ${homedir}/${dot_file/dot_/.}
-                if [ $? != 0 ]; then echo "ERROR: problem linking ${dot_file}"; else echo " linked file... [OK] " && ((++mod_count)); fi
+                if [ $? != 0 ]; then echo "ERROR: problem linking ${dot_file/dot_/.}"; else echo " linked file... [OK] " && ((++mod_count)); fi
             fi
         fi
     done
@@ -133,6 +140,21 @@ setup_config_files() {
     # If no work had to be done then it returns 1
     # This allows for the capability to condition subsequent action based on the behavior of this function.
     ((mod_count > 0)) && return 0 || return 1
+}
+
+_same_place() {
+    local place1=$1
+    local place2=$2
+    
+    if [ -f "${place1}" ] && [ -f "${place2}" ]; then
+        if [ "$(_readlinkf ${place1})" = "$(readlink ${place2})" ]; then
+            ((DEBUG)) && echo "${place1} and ${place2} are the same"
+            return 0
+        else 
+            ((DEBUG)) && echo "${place1} and ${place2} are NOT the same"
+           return 1
+        fi
+    fi
 }
 
 revert_homedir() {

@@ -17,6 +17,8 @@
 (require 'font-lock)
 (global-font-lock-mode t)
 
+(set-default-font "-Misc-Fixed-Medium-R-SemiCondensed--13-120-75-75-C-60-ISO8859-1")
+
 (put 'narrow-to-region 'disabled nil)
 
 (load "~/.emacs.d/custom/overlay-fix.el")
@@ -36,7 +38,7 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (require 'package)
 (add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/"))
+         '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 ;;http://magit.github.com/magit/magit.html
@@ -91,8 +93,6 @@
 (setq text-mode-hook '(lambda () (auto-fill-mode 1)))
 (setq font-lock-maximum-decoration t)
 
-(setq font-lock-maximum-decoration t)
-
 (require 'paren)
 (show-paren-mode 1)
 ;;  (paren-set-mode 'sexp)
@@ -118,7 +118,7 @@
 (setq x-pointer-background-color   "blue")       ; This is color you really
                                                  ; want ptr/crsr
 (setq font-lock-use-default-fonts "fixed")
-;;	(setq font-lock-use-default-colors "green")
+;;(setq font-lock-use-default-colors "green")
 
 (copy-face 'default 'font-lock-comment-face)
 (set-face-foreground 'font-lock-comment-face "tan")
@@ -140,7 +140,7 @@
 
 (defun replace-sequence (from pre start total query-flag regexp-flag) 
   (let ((cur (- (+ start total) 1)) (pt 0) 
-	(repl nil) (str (concat pre "%d")))
+    (repl nil) (str (concat pre "%d")))
     (while (< pt total)
       (setq repl (cons (format str cur) repl))
       (setq pt (+ pt 1))
