@@ -1,0 +1,8 @@
+emacs.background: DarkSlateGray
+emacs.foreground: Wheat
+emacs.pointerColor: Orchid
+emacs.cursorColor: Orchid
+emacs.bitmapIcon: on
+emacs.font: -Misc-Fixed-Medium-R-SemiCondensed--13-120-75-75-C-60-ISO8859-1
+emacs.geometry: 130x53+60+0
+
