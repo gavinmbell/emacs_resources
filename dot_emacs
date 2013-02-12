@@ -11,6 +11,8 @@
 (setq inhibit-splash-screen t)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
+(scroll-bar-mode 1)
+(setq transient-mark-mode nil)
 
 (require 'font-lock)
 (global-font-lock-mode t)
@@ -99,6 +101,7 @@
 ;; Looks...
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
 (set-face-background 'default      "black")     ; frame background
 (set-face-foreground 'default      "navajowhite")      ; normal text
 
@@ -109,28 +112,28 @@
 (set-face-foreground 'highlight    "yellow")
 (set-face-background 'modeline     "DarkSlateGray")       ; Line at bottom of buffer
 (set-face-foreground 'modeline     "wheat")
+(set-face-background 'scroll-bar   "DarkSlateGray")
 (setq x-pointer-foreground-color   "green")      ; Adds to bg color,
                                                  ; so keep black
 (setq x-pointer-background-color   "blue")       ; This is color you really
                                                  ; want ptr/crsr
-	(setq font-lock-use-default-fonts "fixed")
+(setq font-lock-use-default-fonts "fixed")
 ;;	(setq font-lock-use-default-colors "green")
 
-      (copy-face 'default 'font-lock-comment-face)
-      (set-face-foreground 'font-lock-comment-face "tan")
-      (copy-face 'default 'font-lock-variable-name-face)
-      (set-face-foreground 'font-lock-variable-name-face "palegreen")
-      (copy-face 'default 'font-lock-type-face)
-      (set-face-foreground 'font-lock-type-face "coral")
-      (copy-face 'italic 'font-lock-string-face)
-      (set-face-foreground 'font-lock-string-face "lightgray")
-      (copy-face 'default 'font-lock-function-name-face)
-      (set-face-foreground 'font-lock-function-name-face "white")
-      (copy-face 'default 'font-lock-keyword-face)
-      (set-face-foreground 'font-lock-keyword-face "goldenrod")
-      (copy-face 'default 'font-lock-reference-face)
-      (set-face-foreground 'font-lock-reference-face "goldenrod")
-
+(copy-face 'default 'font-lock-comment-face)
+(set-face-foreground 'font-lock-comment-face "tan")
+(copy-face 'default 'font-lock-variable-name-face)
+(set-face-foreground 'font-lock-variable-name-face "palegreen")
+(copy-face 'default 'font-lock-type-face)
+(set-face-foreground 'font-lock-type-face "coral")
+(copy-face 'italic 'font-lock-string-face)
+(set-face-foreground 'font-lock-string-face "lightgray")
+(copy-face 'default 'font-lock-function-name-face)
+(set-face-foreground 'font-lock-function-name-face "white")
+(copy-face 'default 'font-lock-keyword-face)
+(set-face-foreground 'font-lock-keyword-face "goldenrod")
+(copy-face 'default 'font-lock-reference-face)
+(set-face-foreground 'font-lock-reference-face "goldenrod")
 
 (put 'eval-expression 'disabled nil)
 (put 'upcase-region 'disabled nil)
