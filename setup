@@ -36,21 +36,6 @@ homedir=${homedir:-${HOME:?"HOME environment var must be set!!!!"}}
 
 programs_to_check_for=("emacs")
 
-quick_checks() {
-    local oops_count=0
-    for program in ${programs_to_check_for[@]}; do
-        ${program} --version >& /dev/null
-        if [ $? != 0 ]; then
-            ((oops_count++))
-            echo "Couldn't find [${program}]"
-        fi
-    done
-    if ((oops_count > 0)); then
-        echo "Warning: You may want to install the missing program(s) for optimum use..."
-            echo "  Please install the missing program(s) for optimum use (yum, apt-get, rpm, etc..)"
-    fi
-}
-
 # Utility "private" method
 _readlinkf() {
     # This is a portable implementation of GNU's "readlink -f" in
@@ -88,33 +73,66 @@ _readlinkf() {
     cd ${start_dir}
 }
 
+_same_place() {
+    local place1=$1
+    local place2=$2
+    ((DEBUG)) && echo "place 1 = ${place1}"
+    ((DEBUG)) && echo "place 2 = ${place2}"
+
+    if [ -e "${place1}" ] && [ -e "${place2}" ]; then
+        if [ "$(_readlinkf ${place1})" = "$(_readlinkf ${place2})" ]; then
+            ((DEBUG)) && echo "${place1} and ${place2} are the same"
+            return 0
+        else 
+            ((DEBUG)) && echo "${place1} and ${place2} are NOT the same"
+           return 1
+        fi
+    fi
+}
+
+quick_checks() {
+    local oops_count=0
+    for program in ${programs_to_check_for[@]}; do
+        ${program} --version >& /dev/null
+        if [ $? != 0 ]; then
+            ((oops_count++))
+            echo "Couldn't find [${program}]"
+        fi
+    done
+    if ((oops_count > 0)); then
+        echo "Warning: You may want to install the missing program(s) for optimum use..."
+            echo "  Please install the missing program(s) for optimum use (yum, apt-get, rpm, etc..)"
+    fi
+}
+
 setup_top_level_dir() {
-    ((DEBUG)) && echo "setup_top_level_dir"
-    local tld=".emacs.d"
-    local _pd_=$(_readlinkf ${0%/*})
-    local proj_dir=${_pd_%/*}
-    local _dd_=$(_readlinkf ${homedir}/${tld}) 
-    local dest_dir=${_dd_%/*}
-    echo -n "setting up top level ${tld} dir... "
-    ((DEBUG)) && echo "proj_dir = ${proj_dir}"
-    if [ "${proj_dir}" = "${dest_dir}" ]; then
+    ((DEBUG)) && echo "*** setup_top_level_dir ***"
+    local target_name="${homedir}/.emacs.d"
+    local source_name="$(_readlinkf ${BASH_SOURCE[0]%/*})"
+    source_name=${source_name%/*}
+
+    ((DEBUG)) && echo "Target Name = ${target_name}"
+    ((DEBUG)) && echo "Source Name = ${source_name}"
+
+    echo -n "setting up \"${target_name}\" ... "
+    if _same_place $target_name $source_name && [ -L "${target_name}" ]; then
         echo "[OK] (nothing to do already linked)"
     else
-        ((DEBUG|DRY_RUN)) && echo "[ -e ${homedir}/${tld} ] && mv ${homedir}/${tld}{,_bak}"
-        ((! DRY_RUN)) && [ -e "${homedir}/${tld}" ] && mv -v ${homedir}/${tld}{,_bak}
-        ((DEBUG||DRY_RUN)) && echo "ln -s ${proj_dir} ${homedir}/${tld}"
-        if ((! DRY_RUN)); then
-            ((FORCE & DEBUG)) && echo "[ -L "${homedir}/${tld}" ] && [ "${dest_dir}" != "${proj_dir}" ] && unlink ${homedir}/${tld}"
-            ((FORCE)) && [ -L "${homedir}/${tld}" ] && [ "${dest_dir}" != "${proj_dir}" ] && unlink ${homedir}/${tld}
-            ln -s ${proj_dir} ${homedir}/${tld}
-            if [ $? != 0 ]; then echo "ERROR: problem linking top level dir ${proj_dir}"; return 1; else echo " linked dir... [OK] "; return 0; fi
+        [ -e "${target_name}" ] && mv ${target_name}{,.bak}
+        ((DEBUG)) && echo "ln -s ${source_name} ${target_name}"
+        ln -s ${source_name} ${target_name}
+        if [ $? != 0 ]; then 
+            echo "ERROR: problem linking ${target_name} -> ${source_name}"
+            return 1
+        else 
+            echo " linked file... [OK] "
         fi
     fi
     return 0
 }
 
 setup_config_files() {
-    ((DEBUG)) &&echo "setup_config_files"
+    ((DEBUG)) && echo "*** setup_config_files ***"
     [ ! -e .git ] && echo "Sorry this is not a git repo" && exit 1
     local mod_count=0
     for dot_file in $(ls -a | egrep '^dot_*'); do
@@ -140,21 +158,6 @@ setup_config_files() {
     # If no work had to be done then it returns 1
     # This allows for the capability to condition subsequent action based on the behavior of this function.
     ((mod_count > 0)) && return 0 || return 1
-}
-
-_same_place() {
-    local place1=$1
-    local place2=$2
-    
-    if [ -f "${place1}" ] && [ -f "${place2}" ]; then
-        if [ "$(_readlinkf ${place1})" = "$(readlink ${place2})" ]; then
-            ((DEBUG)) && echo "${place1} and ${place2} are the same"
-            return 0
-        else 
-            ((DEBUG)) && echo "${place1} and ${place2} are NOT the same"
-           return 1
-        fi
-    fi
 }
 
 revert_homedir() {
