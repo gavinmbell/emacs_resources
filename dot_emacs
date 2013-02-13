@@ -173,7 +173,7 @@
 (setq moo-filter-hook
       (setq tinymud-filter-hook
             '(mud-check-triggers mud-check-reconnect mud-fill-lines)))
-(setq jmud-directory (expand-file-name "~/.emacs_lisp/moolisp"))
+(setq jmud-directory (expand-file-name "~/.emacs.d/custom/moolisp"))
 (setq j-mud-libraries-list
       (list
        "j-mud-worlds"
