@@ -26,7 +26,7 @@ such.
 INSTALLATION:
 ----------
 
-%> bash <(curl -s http://moya.6thcolumn.org/emacs_resources/ezsetup)
+%> bash <(curl -s http://moya.6thcolumn.org/resources/emacs/ezsetup)
 
 OR
 
