@@ -1,4 +1,11 @@
 ;;-----------------------------------
+;; This file is essentially my meandering musings of things eLISP.
+;; Here is a nice initial quick ref:
+;; http://ergoemacs.org/emacs/elisp_basics.html
+;;-----------------------------------
+
+
+;;-----------------------------------
 ;; Launch a quick search to Google...
 ;;-----------------------------------
 (defun google ()
@@ -13,6 +20,9 @@
 
 (global-set-key "\C-c\C-g" 'google)
 
+;;-----------------------------------
+;; To have a terminal window *in* emacs quick at hand
+;;-----------------------------------
 (defun visit-term-buffer ()
   "Create or visit a terminal buffer."
   (interactive)
@@ -25,23 +35,24 @@
 
 (global-set-key "\C-ct" 'visit-term-buffer)
 
+;;-----------------------------------
+;; Handy when wanting to clean up a ton of buffers after a long editing session
+;;-----------------------------------
 (defun kill-other-buffers ()
   "Kill all buffers but the current one. Don't mess with special buffers."
   (interactive)
   (dolist (buffer (buffer-list))
     (unless (or (eql buffer (current-buffer)) (not (buffer-file-name buffer)))
       (kill-buffer buffer))))
-
 ;;(global-set-key "\C-c\C-k" 'kill-other-buffers)
 
 
 ;;-----------------------------------
 ;; Automatically save and restore sessions
 ;; (There are times I want to "get back to where I was")
-;;-----------------------------------
 ;; http://stackoverflow.com/questions/4477376/some-emacs-desktop-save-questions-how-to-change-it-to-save-in-emacs-d-emacs
 ;; http://www.emacswiki.org/emacs/AnsiTerm
-
+;;-----------------------------------
 (setq desktop-dirname             "~/.emacs-desktops/"
       desktop-base-file-name      "emacs.desktop"
       desktop-base-lock-name      "lock"
