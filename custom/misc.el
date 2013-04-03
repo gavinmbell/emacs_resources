@@ -24,3 +24,12 @@
     (switch-to-buffer-other-window "*ansi-term*")))
 
 (global-set-key "\C-ct" 'visit-term-buffer)
+
+(defun kill-other-buffers ()
+  "Kill all buffers but the current one. Don't mess with special buffers."
+  (interactive)
+  (dolist (buffer (buffer-list))
+    (unless (or (eql buffer (current-buffer)) (not (buffer-file-name buffer)))
+      (kill-buffer buffer))))
+
+;;(global-set-key "\C-c\C-k" 'kill-other-buffers)
