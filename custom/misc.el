@@ -40,6 +40,7 @@
 ;; (There are times I want to "get back to where I was")
 ;;-----------------------------------
 ;; http://stackoverflow.com/questions/4477376/some-emacs-desktop-save-questions-how-to-change-it-to-save-in-emacs-d-emacs
+;; http://www.emacswiki.org/emacs/AnsiTerm
 
 (setq desktop-dirname             "~/.emacs-desktops/"
       desktop-base-file-name      "emacs.desktop"
