@@ -76,3 +76,25 @@
   (let ((desktop-load-locked-desktop "ask"))
     (desktop-read)
     (desktop-save-mode 1)))
+
+;;-----------------------------------
+;; Moving lines around...
+;;-----------------------------------
+(defun move-line-up ()
+  "Move up the current line."
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2)
+  (indent-according-to-mode))
+
+(global-set-key [S-C-up] 'move-line-up)
+
+(defun move-line-down ()
+  "Move down the current line."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+(global-set-key [S-C-down] 'move-line-down)
