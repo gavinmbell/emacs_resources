@@ -98,3 +98,10 @@
   (indent-according-to-mode))
 
 (global-set-key [S-C-down] 'move-line-down)
+
+;;-----------------------------------
+;; Be able to go backward with buffer traversing selection
+;;-----------------------------------
+(global-set-key (kbd "C-x O") (lambda ()
+                                (interactive)
+                                (other-window -1)))
