@@ -53,6 +53,15 @@
 ;; http://stackoverflow.com/questions/4477376/some-emacs-desktop-save-questions-how-to-change-it-to-save-in-emacs-d-emacs
 ;; http://www.emacswiki.org/emacs/AnsiTerm
 ;;-----------------------------------
+(let ((my-desktop-dirname "~/.emacs-desktops/"))
+  (if (not (file-directory-p my-desktop-dirname))
+      (progn
+        (message "Creating desktop directory: %s" my-desktop-dirname)
+        (make-directory my-desktop-dirname ))
+      (message "Already present: %s" my-desktop-dirname)
+    )
+  )
+
 (setq desktop-dirname             "~/.emacs-desktops/"
       desktop-base-file-name      "emacs.desktop"
       desktop-base-lock-name      "lock"
