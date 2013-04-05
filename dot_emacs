@@ -17,7 +17,8 @@
 (require 'font-lock)
 (global-font-lock-mode t)
 
-(set-default-font "-Misc-Fixed-Medium-R-SemiCondensed--13-120-75-75-C-60-ISO8859-1")
+(setq myfont "-Misc-Fixed-Medium-R-SemiCondensed--13-120-75-75-C-60-ISO8859-1")
+(set-default-font myfont)
 
 (put 'narrow-to-region 'disabled nil)
 
@@ -101,7 +102,7 @@
 ;; Looks...
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(set-face-attribute 'default nil :font "-Misc-Fixed-Medium-R-SemiCondensed--13-120-75-75-C-60-ISO8859-1")
+(set-face-attribute 'default nil :font myfont)
 (set-face-background 'default      "black")     ; frame background
 (set-face-foreground 'default      "navajowhite")      ; normal text
 
