@@ -105,3 +105,8 @@
 (global-set-key (kbd "C-x O") (lambda ()
                                 (interactive)
                                 (other-window -1)))
+
+;;-----------------------------------
+;; Misc...
+;;-----------------------------------
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
