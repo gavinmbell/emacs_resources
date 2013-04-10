@@ -64,6 +64,9 @@
 
 (global-set-key "\M-s" 'search-forward-regexp)
 
+(global-set-key [M-up] 'move-text-up)
+(global-set-key [M-down] 'move-text-down)
+
 ;;-----
 ;;source code formatting prefs.
 ;;-----
