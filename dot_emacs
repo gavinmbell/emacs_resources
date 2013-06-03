@@ -82,6 +82,7 @@
   (setq tab-width 4)
   (setq indent-tabs-mode nil))
 (add-hook 'java-mode-hook 'my-java-mode-hook)
+(add-hook 'java-mode-hook 'subword-mode)
 
 (global-set-key "\C-\M-]" 'untabify)
 ;;-----
