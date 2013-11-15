@@ -147,7 +147,7 @@
 (put 'eval-expression 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
-(defun replace-sequence (from pre start total query-flag regexp-flag) 
+(defun replace-sequence (from pre start total query-flag regexp-flag)
   (let ((cur (- (+ start total) 1)) (pt 0) 
     (repl nil) (str (concat pre "%d")))
     (while (< pt total)

@@ -109,7 +109,7 @@
 ;;-----------------------------------
 ;; flyspell...
 ;;-----------------------------------
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+;;(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 (defun sudo-edit (&optional arg)
   "Edit currently visited file as root.
@@ -153,7 +153,7 @@ buffer is not visiting a file."
       (move-beginning-of-line 1))))
 
 ;; remap C-a to `smarter-move-beginning-of-line'
-(global-set-key [remap move-beginning-of-line] 'smarter-move-beginning-of-line)
+;;(global-set-key [remap move-beginning-of-line] 'smarter-move-beginning-of-line)
 
 ;;-----------------------------------
 ;; eval and replace...
@@ -169,7 +169,7 @@ buffer is not visiting a file."
     (error (message "Invalid expression")
            (insert (current-kill 0)))))
 
-(global-set-key (kbd "C-c e") 'eval-end-replace)
+(global-set-key (kbd "C-c e") 'eval-and-replace)
 
 ;;-----------------------------------
 ;; smart open line (w/ above)
