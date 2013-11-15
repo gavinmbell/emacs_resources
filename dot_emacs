@@ -119,8 +119,8 @@
 
 (set-face-background 'highlight    "black")       ; Ie when selecting buffers
 (set-face-foreground 'highlight    "yellow")
-(set-face-background 'modeline     "DarkSlateGray")       ; Line at bottom of buffer
-(set-face-foreground 'modeline     "wheat")
+(set-face-background 'mode-line     "DarkSlateGray")       ; Line at bottom of buffer
+(set-face-foreground 'mode-line     "wheat")
 (set-face-background 'scroll-bar   "DarkSlateGray")
 (setq x-pointer-foreground-color   "green")      ; Adds to bg color,
                                                  ; so keep black
@@ -160,7 +160,7 @@
  '(paren-mode (quote paren) nil (paren))
  '(column-number-mode t)
  '(default-toolbar-position (quote right))
- '(modeline-click-swaps-buffers t)
+ '(mode-line-click-swaps-buffers t)
  '(user-mail-address "cue@garvey.6thcolumn.org" t)
  '(query-user-mail-address nil))
 (custom-set-faces)
