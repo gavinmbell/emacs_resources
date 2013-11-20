@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("post"
+(("dot_emacs"
+ (filename . "~/.emacs_resources/dot_emacs")
+ (front-context-string . "auto-complete)\n(")
+ (rear-context-string . "lize)\n(require '")
+ (position . 7865))
+("post"
  (filename . "~/projects/esgf-installer/post")
  (front-context-string . "sed 's#\\(script_")
  (rear-context-string . "e}_\"\n    LANG=C ")

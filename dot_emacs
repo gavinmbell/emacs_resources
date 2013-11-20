@@ -29,6 +29,7 @@
 (load "~/.emacs.d/custom/overlay-fix.el")
 
 (add-hook 'clojure-mode-hook 'paredit-mode)
+(add-hook 'clojure-mode-hook 'auto-complete-mode)
 
 (setq tramp-default-user "${USER}")
 
@@ -218,6 +219,29 @@
 
 (global-set-key "\C-cp" 'paredit-mode)
 (global-set-key "\C-c\M-j" 'nrepl-jack-in)
+
+(require 'ac-nrepl)
+(add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
+(add-hook 'cider-mode-hook 'ac-nrepl-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'cider-repl-mode))
+
+(defun set-auto-complete-as-completion-at-point-function ()
+  (setq completion-at-point-functions '(auto-complete)))
+(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+
+(add-hook 'cider-repl-mode-hook 'set-auto-complete-as-completion-at-point-function)
+(add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
+
+(eval-after-load "cider"
+  '(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
+
+;;(package-initialize)
+;;(require 'auto-complete)
+;;(global-auto-complete-mode)
+;;(add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
+;;(add-hook 'nrepl-interaction-mode-hook 'ac-nrepl-setup)
+;;(add-hook 'clojure-nrepl-mode-hook 'ac-nrepl-setup)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Keyboard Macros
