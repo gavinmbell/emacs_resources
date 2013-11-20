@@ -1,0 +1,20 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("post"
+ (filename . "~/projects/esgf-installer/post")
+ (front-context-string . "sed 's#\\(script_")
+ (rear-context-string . "e}_\"\n    LANG=C ")
+ (position . 5323))
+("build.xml"
+ (filename . "~/projects/esgf-security/build.xml")
+ (front-context-string . "version\" value=\"")
+ (rear-context-string . "erty name=\"java.")
+ (position . 6234))
+("esg-node"
+ (filename . "~/projects/esgf-installer/esg-node")
+ (front-context-string . "generate_ssl_key")
+ (rear-context-string . "                ")
+ (position . 302497))
+)

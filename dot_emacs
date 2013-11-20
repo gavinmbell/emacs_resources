@@ -207,7 +207,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (load "~/.emacs.d/custom/keys.el")
-(load "~/.emacs.d/custom/frills.el")
+;;(load "~/.emacs.d/custom/frills.el")
 (load "~/.emacs.d/custom/half-height.el")
 (load "~/.emacs.d/custom/misc.el")
 
