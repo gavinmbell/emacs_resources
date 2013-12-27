@@ -19,7 +19,7 @@
  (position . 6234))
 ("esg-node"
  (filename . "~/projects/esgf-installer/esg-node")
- (front-context-string . "generate_ssl_key")
- (rear-context-string . "                ")
- (position . 302497))
+ (front-context-string . "//apache.mirrors")
+ (rear-context-string . "t_dist_url=http:")
+ (position . 15704))
 )
