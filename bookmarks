@@ -2,7 +2,17 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("dot_emacs"
+(("project.clj"
+ (filename . "~/projects/coop/project.clj")
+ (front-context-string . "\n               ")
+ (rear-context-string . "[digest \"1.4.3\"]")
+ (position . 652))
+(".gitmodules"
+ (filename . "~/projects/system/.gitmodules")
+ (front-context-string . "[submodule \"cook")
+ (rear-context-string . "dams/pacman.git\n")
+ (position . 5118))
+("dot_emacs"
  (filename . "~/.emacs_resources/dot_emacs")
  (front-context-string . "auto-complete)\n(")
  (rear-context-string . "lize)\n(require '")
