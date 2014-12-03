@@ -212,6 +212,10 @@
 (load "~/.emacs.d/custom/half-height.el")
 (load "~/.emacs.d/custom/misc.el")
 
+;; For clojure ns reconstruction...
+(load "~/.emacs.d/custom/slamhound.el)
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc misc...
