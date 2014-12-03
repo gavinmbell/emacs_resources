@@ -2,7 +2,27 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("project.clj"
+(("rabbit.clj"
+ (filename . "~/projects/coop/src/clj/soundcloud/coop/rabbit.clj")
+ (front-context-string . "(fmt/unparse tim")
+ (rear-context-string . "t/parse)\n       ")
+ (position . 608))
+("broker.clj"
+ (filename . "~/projects/departed/src/departed/broker.clj")
+ (front-context-string . "create-broker-ru")
+ (rear-context-string . "acted)))\n\n(defn ")
+ (position . 1329))
+("app.clj"
+ (filename . "~/projects/departed/src/departed/app.clj")
+ (front-context-string . "create-broker-ru")
+ (rear-context-string . "(.start (broker/")
+ (position . 679))
+("verify-rate"
+ (filename . "~/projects/timestamp_count/bin/verify-rate")
+ (front-context-string . ")\"2014-09-11_09:")
+ (rear-context-string . "ime=${1:-$(date ")
+ (position . 1625))
+("project.clj"
  (filename . "~/projects/coop/project.clj")
  (front-context-string . "\n               ")
  (rear-context-string . "[digest \"1.4.3\"]")
