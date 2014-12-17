@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("rabbit.clj"
+(("core.clj"
+ (filename . "~/projects/boxer/src/clj/soundcloud/boxer/core.clj")
+ (front-context-string . "get-my-logfile [")
+ (rear-context-string . "fo from \n(defn- ")
+ (position . 7071))
+("rabbit.clj"
  (filename . "~/projects/coop/src/clj/soundcloud/coop/rabbit.clj")
  (front-context-string . "(fmt/unparse tim")
  (rear-context-string . "t/parse)\n       ")

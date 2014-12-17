@@ -1,28 +1,28 @@
-((("lein-kibit" .
-   [1 0 0 0 0 0 0 0 0 0])
-  ("foo" .
-   [1 0 0])
-  ("filter-ingress-registration" .
-   [0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("peers" .
-   [0 0 0 0 1])
-  ("handler" .
-   [0 0 1 0 0 0 0])
-  ("handle-ingress-registration" .
-   [0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2])
-  ("post-to-next-peer" .
-   [0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("Manager</h1><a" .
-   [0 0 1 0 0 0 0 0 0 0 0 0 0 0])
-  ("just" .
+((("mapv" .
    [0 0 1 0])
-  ("jcount" .
-   [1 0 0 0 1 0])
-  ("juxt" .
-   [0 1 1 0])
-  ("registration" .
-   [0 0 0 2 0 0 0 0 0 0 0 0])
   ("re-seq" .
    [0 0 0 0 0 1])
-  ("mapv" .
-   [0 0 1 0])))
+  ("registration" .
+   [0 0 0 2 0 0 0 0 0 0 0 0])
+  ("juxt" .
+   [0 1 1 0])
+  ("jcount" .
+   [1 0 0 0 1 0])
+  ("just" .
+   [0 0 1 0])
+  ("Manager</h1><a" .
+   [0 0 1 0 0 0 0 0 0 0 0 0 0 0])
+  ("post-to-next-peer" .
+   [0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("handle-ingress-registration" .
+   [0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2])
+  ("handler" .
+   [0 0 1 0 0 0 0])
+  ("peers" .
+   [0 0 0 0 1])
+  ("filter-ingress-registration" .
+   [0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("foo" .
+   [1 0 0])
+  ("lein-kibit" .
+   [1 0 0 0 0 0 0 0 0 0])))

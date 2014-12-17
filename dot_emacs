@@ -26,10 +26,16 @@
 
 (put 'narrow-to-region 'disabled nil)
 
+;;(load "~/.emacs.d/custom/rainbow-delimiters.el")
+;;(require 'rainbow-delimiters)
+;;(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+;;(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+
 (load "~/.emacs.d/custom/overlay-fix.el")
 
 (add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'auto-complete-mode)
+
 
 (setq tramp-default-user "${USER}")
 
