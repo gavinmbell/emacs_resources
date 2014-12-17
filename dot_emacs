@@ -219,7 +219,7 @@
 (load "~/.emacs.d/custom/misc.el")
 
 ;; For clojure ns reconstruction...
-(load "~/.emacs.d/custom/slamhound.el)
+(load "~/.emacs.d/custom/slamhound.el")
 
 
 
