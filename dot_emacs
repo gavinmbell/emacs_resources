@@ -35,6 +35,7 @@
 
 (add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'auto-complete-mode)
+(add-hook 'clojure-mode-hook 'flyspell-prog-mode)
 
 
 (setq tramp-default-user "${USER}")
