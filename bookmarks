@@ -2,11 +2,31 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("core.clj"
+(("Readme.md"
+ (filename . "~/projects/geonetwork-docker/publisher/Readme.md")
+ (front-context-string . "minimally check ")
+ (rear-context-string . "0.228:9200/\n\nTo ")
+ (position . 8172))
+("geo-search"
+ (filename . "~/projects/geonetwork-docker/search/etc/geo-search")
+ (front-context-string . "elasticsearch ];")
+ (rear-context-string . "asticsearch/bin/")
+ (position . 4787))
+("journaled_log_tail.clj"
+ (filename . "~/projects/boxer/src/clj/soundcloud/boxer/journaled_log_tail.clj")
+ (front-context-string . "      (raf-seq r")
+ (rear-context-string . "(recur raf))))]\n")
+ (position . 6825))
+("journaled-tail.clj"
+ (filename . "~/projects/boxer/src/clj/soundcloud/boxer/journaled-tail.clj")
+ (front-context-string . "\n\n(defn raf-seq\n")
+ (rear-context-string . "ck-interval 100)")
+ (position . 484))
+("core.clj"
  (filename . "~/projects/boxer/src/clj/soundcloud/boxer/core.clj")
- (front-context-string . "get-my-logfile [")
- (rear-context-string . "fo from \n(defn- ")
- (position . 7071))
+ (front-context-string . "#\"^\\[(\\d{4}-\\d{2")
+ (rear-context-string . "ind (re-matcher ")
+ (position . 6104))
 ("rabbit.clj"
  (filename . "~/projects/coop/src/clj/soundcloud/coop/rabbit.clj")
  (front-context-string . "(fmt/unparse tim")

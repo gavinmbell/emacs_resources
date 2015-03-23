@@ -11,7 +11,9 @@
 (setq inhibit-splash-screen t)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
-(scroll-bar-mode 1)
+(scroll-bar-mode 0)
+(global-linum-mode 1)
+
 (setq transient-mark-mode nil)
 
 (require 'font-lock)
@@ -32,10 +34,10 @@
 ;;(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 
 (load "~/.emacs.d/custom/overlay-fix.el")
-
 (add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'clojure-mode-hook 'auto-complete-mode)
 (add-hook 'clojure-mode-hook 'flyspell-prog-mode)
+(add-hook 'clojure-mode-hook 'subword-mode)
 
 
 (setq tramp-default-user "${USER}")
